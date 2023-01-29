@@ -1,0 +1,1 @@
+npx sequelize model:generate --name product --attributes name:string,description:text,price:decimal,stock:integer --underscored
