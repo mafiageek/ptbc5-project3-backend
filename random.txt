@@ -1,1 +1,6 @@
 npx sequelize model:generate --name product --attributes name:string,description:text,price:decimal,stock:integer --underscored
+
+npx sequelize db:seed:undo 
+
+
+npx sequelize model:generate --name product-image --attributes url:string --underscored

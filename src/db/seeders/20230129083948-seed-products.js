@@ -7,8 +7,9 @@ module.exports = {
 
     return queryInterface.bulkInsert(
       "products",
-      products.map(({ name, description, price, stock }) => ({
+      products.map(({ name, brand, description, price, stock }) => ({
         name: name,
+        brand: brand,
         description: description,
         price: price,
         stock: stock,
