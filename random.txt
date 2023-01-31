@@ -3,4 +3,4 @@ npx sequelize model:generate --name product --attributes name:string,description
 npx sequelize db:seed:undo 
 
 
-npx sequelize model:generate --name product-image --attributes url:string --underscored
+npx sequelize model:generate --name productImage --attributes url:string,product_id:integer --underscored

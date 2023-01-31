@@ -1,3 +1,4 @@
+const { productImage } = require("../db/models");
 const {
   getAllProducts,
   updateProductById,
@@ -9,6 +10,7 @@ module.exports = {
     const { name } = query;
 
     const options = {
+      include: [{ model: productImage }],
       where: {},
     };
 
