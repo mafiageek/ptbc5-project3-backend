@@ -24,6 +24,13 @@ module.exports = {
       stock: {
         type: Sequelize.INTEGER,
       },
+      category_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "categories",
+          key: "id",
+        },
+      },
       created_at: {
         allowNull: false,
         type: Sequelize.DATE,

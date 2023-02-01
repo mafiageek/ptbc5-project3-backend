@@ -7,15 +7,18 @@ module.exports = {
 
     return queryInterface.bulkInsert(
       "products",
-      products.map(({ name, brand, description, price, stock }) => ({
-        name: name,
-        brand: brand,
-        description: description,
-        price: price,
-        stock: stock,
-        created_at: currentDate,
-        updated_at: currentDate,
-      }))
+      products.map(
+        ({ name, brand, description, price, stock, category_id }) => ({
+          name: name,
+          brand: brand,
+          description: description,
+          price: price,
+          stock: stock,
+          category_id: category_id,
+          created_at: currentDate,
+          updated_at: currentDate,
+        })
+      )
     );
   },
 

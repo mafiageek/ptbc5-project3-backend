@@ -4,20 +4,23 @@
     "brand": "Apple",
     "description": "The iPhone is a smartphone made by Apple that combines a computer, iPod, digital camera and cellular phone into one device with a touchscreen interface. The iPhone runs the iOS operating system, and in 2021 when the iPhone 13 was introduced, it offered up to 1 TB of storage and a 12-megapixel camera.",
     "price": 1008.3,
-    "stock": 10
+    "stock": 10,
+    "category_id": 1
   },
   {
     "name": "Sony WH-1000XM5 Wireless Noise Cancelling Headphones",
     "brand": "Sony",
     "description": "Casual or professional, Sony takes sound quality and comfort seriously with headphones.",
     "price": 575.0,
-    "stock": 10
+    "stock": 10,
+    "category_id": 3
   },
   {
     "name": "Apple AirPods Max",
     "brand": "Apple",
     "description": "AirPods Max combine high-fidelity audio with industry-leading Active Noise Cancellation to deliver an unparalleled listening experience. Each part of their custom-built driver works to produce sound with ultra-low distortion across the audible range. From deep, rich bass to accurate mids and crisp, clean highs, you’ll hear every note with a new sense of clarity.",
     "price": 806.45,
-    "stock": 10
+    "stock": 10,
+    "category_id": 2
   }
 ]
