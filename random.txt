@@ -1,1 +1,27 @@
+npx sequelize db:create
 npx sequelize model:generate --name product --attributes name:string,description:text,price:decimal,stock:integer --underscored
+
+npx sequelize db:seed:undo 
+
+
+npx sequelize model:generate --name productImage --attributes url:string,product_id:integer --underscored
+
+npx sequelize model:generate --name category --attributes category_name:string --underscored
+
+npx sequelize db:migrate
+
+npx sequelize seed:generate --name seed-categories
+
+npx sequelize db:seed --seed 20230201090927-seed-categories.js
+
+#Feb 01 yet to run
+
+npx sequelize seed:generate --name seed-product-images
+npx sequelize db:migrate:undo --name 20230130142935-create-product-image.js
+npx sequelize db:migrate:undo --name 20230128101342-create-product.js
+npx sequelize db:migrate
+npx sequelize db:seed --seed 20230129083948-seed-products.js
+npx sequelize db:seed --seed 20230201093245-seed-product-images.js
+
+
+

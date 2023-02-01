@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/mafiageek/ptbc5-project3-backend#readme",
   "dependencies": {
+    "cloudinary": "^1.33.0",
     "cors": "^2.8.5",
     "date-fns": "^2.29.3",
     "dotenv": "^16.0.3",
