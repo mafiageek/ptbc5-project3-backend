@@ -25,6 +25,7 @@ npx sequelize db:seed --seed 20230201093245-seed-product-images.js
 
 ubuntu commands:
 sudo service postgresql start
-sudo su postgresqlpsql boxybox
+sudo su postgres
+psql boxybox
 \l
 \c kedai-bodega

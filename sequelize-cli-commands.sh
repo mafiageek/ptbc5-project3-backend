@@ -1,4 +1,5 @@
 #The following commands assumed that you have set up the table with
+NOTE DO NOT RUN THIS, PROBABLY RAN ALREADY. START FROM LINE 6
 npx sequelize db:create
 #all model files have been generated and they are present in /src/db/models
 #drops all table

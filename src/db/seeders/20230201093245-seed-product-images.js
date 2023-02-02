@@ -9,7 +9,6 @@ module.exports = {
       "product_images",
       productImages.map(({ url_string, product_id }) => ({
         url_string: url_string,
-
         product_id: product_id,
         created_at: currentDate,
         updated_at: currentDate,
