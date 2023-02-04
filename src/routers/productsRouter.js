@@ -12,5 +12,5 @@ productsRouter.get(
   productsController.getProductsByCategoryId
 );
 productsRouter.patch("/:id", productsController.updateProductById);
-productsRouter.post("/createProduct", productsController.createProduct);
+productsRouter.post("", productsController.createProduct);
 module.exports = productsRouter;
