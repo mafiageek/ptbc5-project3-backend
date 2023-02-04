@@ -1,9 +1,31 @@
-const { product } = require("../db/models");
+const { product, productImage, category } = require("../db/models");
+
 const logger = require("../middleware/logger");
 
 module.exports = {
   getAllProducts(options) {
     return product.findAll(options);
+  },
+  getProductById(id) {
+    const options = {
+      include: [{ model: productImage }, { model: category }],
+
+      // attributes: {
+      //   include: [
+      //     [Sequelize.fn("COUNT", Sequelize.col("likes.id")), "likesCount"],
+      //   ],
+      // },
+      // group: ["like.id"],
+    };
+    if (id) options.where = { id };
+    return product.findOne(options);
+  },
+  getProductsByCategoryId(categoryId) {
+    const options = {
+      include: [{ model: productImage }, { model: category }],
+    };
+    if (categoryId) options.where = { category_id: categoryId };
+    return product.findOne(options);
   },
   async updateProductById(id, payload) {
     // eslint-disable-next-line no-unused-vars
@@ -14,5 +36,24 @@ module.exports = {
     );
 
     return updatedProduct;
+  },
+  async createProduct(payload) {
+    const currentDate = new Date();
+    const { url_string, ...rest } = payload;
+
+    const newProduct = await product.create({
+      ...rest,
+      created_at: currentDate,
+      updated_at: currentDate,
+    });
+
+    const newProductImage = await productImage.create({
+      url_string: url_string,
+      product_id: newProduct.id,
+      created_at: currentDate,
+      updated_at: currentDate,
+    });
+
+    return newProduct;
   },
 };
