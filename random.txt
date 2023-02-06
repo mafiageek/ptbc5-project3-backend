@@ -1,12 +1,21 @@
 npx sequelize db:create
 npx sequelize model:generate --name product --attributes name:string,description:text,price:decimal,stock:integer --underscored
 
-npx sequelize db:seed:undo 
-
-
 npx sequelize model:generate --name productImage --attributes url:string,product_id:integer --underscored
 
 npx sequelize model:generate --name category --attributes category_name:string --underscored
+
+npx sequelize model:generate --name user --attributes role:enum:'{user,admin}',name:string,mobile:string,email:string,uid:string --underscored
+
+npx sequelize model:generate --name user_address --attributes user_id:integer,address_line1:string,address_line2:string,city:string,postal:string,country:string,mobile:string --underscored
+
+npx sequelize model:generate --name order --attributes user_id:integer,address_id:integer,total:decimal,order_status:enum:'{paid,shipped,received,reviewed}' --underscored
+
+
+npx sequelize db:seed:undo 
+
+
+
 
 npx sequelize db:migrate
 
