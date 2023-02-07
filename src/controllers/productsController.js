@@ -10,12 +10,15 @@ const { Sequelize, Op } = require("sequelize");
 const { SORT_ORDER_HASHMAP } = require("./constants");
 module.exports = {
   async getAllProducts({ query }, res) {
-    const { name } = query;
+    const { name, categoryName } = query;
 
     const options = {
       include: [{ model: productImage }, { model: category }],
       where: {},
     };
+
+    if (categoryName)
+      options.include[1].where = { category_name: categoryName };
 
     //if (name) options.where.name = { [Op.substring]: name };
     if (name)
@@ -24,6 +27,7 @@ module.exports = {
         "LIKE",
         `%${name.toLowerCase()}%`
       );
+
     const products = await getAllProducts(options);
 
     return res.json(products);
