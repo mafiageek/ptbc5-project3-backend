@@ -1,23 +1,29 @@
 [
   {
-    "name": "Eugene",
-    "role": "admin",
-    "mobile": "85881322",
-    "email": "eugenengboxiang@gmail.com",
-    "uid": "b0xaasd23"
+    "user_id": 3,
+    "address_line1": "31 crowhurst drive",
+    "address_line2": "",
+    "city": "singapore",
+    "postal": "557910",
+    "country": "singapore",
+    "mobile": "81234567"
   },
   {
-    "name": "Anton",
-    "role": "admin",
-    "mobile": "81181150",
-    "email": "antonkho@gmail.com",
-    "uid": "a4n512ujk"
+    "user_id": 4,
+    "address_line1": "51 chai chee street",
+    "address_line2": "#04-01",
+    "city": "singapore",
+    "postal": "460051",
+    "country": "singapore",
+    "mobile": "82232756"
   },
   {
-    "name": "Joe",
-    "role": "user",
-    "mobile": "81234567",
-    "email": "dohnjoe@gmail.com",
-    "uid": "ssd54fdf"
+    "user_id": 4,
+    "address_line1": "Flat 11 Tangmere",
+    "address_line2": "Sidmouth Mews",
+    "city": "London",
+    "postal": "WC1H8JJ",
+    "country": "United Kingdom",
+    "mobile": "82232756"
   }
 ]
