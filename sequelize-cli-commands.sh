@@ -14,3 +14,7 @@ npx sequelize db:seed --seed 20230201093245-seed-product-images.js
 npx sequelize db:seed --seed 20230201090927-seed-categories.js
 
 npx sequelize db:migrate --name 20230201083733-create-category.js
+
+npx sequelize db:migrate --name 20230206141228-create-user.js
+npx sequelize db:migrate --name 20230206141924-create-user-address.js
+npx sequelize db:migrate --name 20230206145637-create-order.js
