@@ -9,13 +9,6 @@ module.exports = {
   getProductById(id) {
     const options = {
       include: [{ model: productImage }, { model: category }],
-
-      // attributes: {
-      //   include: [
-      //     [Sequelize.fn("COUNT", Sequelize.col("likes.id")), "likesCount"],
-      //   ],
-      // },
-      // group: ["like.id"],
     };
     if (id) options.where = { id };
     return product.findOne(options);

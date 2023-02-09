@@ -2,7 +2,7 @@ const { user, userAddress } = require("../db/models");
 const {
   getAllUsers,
   getUserById,
-
+  updateUserById,
   createUser,
 } = require("../repositories/usersRepository");
 
@@ -40,6 +40,11 @@ module.exports = {
     }
 
     return res.json(user);
+  },
+  async updateUserById(req, res) {
+    const { id } = req.params;
+    const updatedUser = await updateUserById(id, req.body);
+    return res.json(updatedUser);
   },
   async createUser(req, res) {
     const newUser = await createUser({ ...req.body });

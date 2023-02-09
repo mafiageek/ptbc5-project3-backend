@@ -14,9 +14,9 @@ module.exports = (sequelize, DataTypes) => {
   }
   userAddress.init(
     {
-      user_id: DataTypes.INTEGER,
-      address_line1: DataTypes.STRING,
-      address_line2: DataTypes.STRING,
+      userId: DataTypes.INTEGER,
+      addressLine1: DataTypes.STRING,
+      addressLine2: DataTypes.STRING,
       city: DataTypes.STRING,
       postal: DataTypes.STRING,
       country: DataTypes.STRING,
