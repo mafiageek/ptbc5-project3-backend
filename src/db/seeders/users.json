@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Eugene",
+    "role": "admin",
+    "mobile": "85881322",
+    "email": "eugenengboxiang@gmail.com",
+    "uid": "b0xaasd23"
+  },
+  {
+    "name": "Anton",
+    "role": "admin",
+    "mobile": "81181150",
+    "email": "antonkho@gmail.com",
+    "uid": "a4n512ujk"
+  },
+  {
+    "name": "Joe",
+    "role": "user",
+    "mobile": "81234567",
+    "email": "dohnjoe@gmail.com",
+    "uid": "ssd54fdf"
+  },
+  {
+    "name": "Garrett",
+    "role": "user",
+    "mobile": "82232756",
+    "email": "popcornG@gmail.com",
+    "uid": "g4r3tp0pc0rn"
+  }
+]

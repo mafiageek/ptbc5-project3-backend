@@ -20,6 +20,11 @@ npx sequelize db:seed:undo
 npx sequelize db:migrate
 
 npx sequelize seed:generate --name seed-categories
+npx sequelize seed:generate --name seed-users
+npx sequelize seed:generate --name seed-user-addresses
+npx sequelize seed:generate --name seed-orders
+npx sequelize seed:generate --name seed-users
+
 
 npx sequelize db:seed --seed 20230201090927-seed-categories.js
 
@@ -31,6 +36,8 @@ npx sequelize db:migrate
 npx sequelize db:seed --seed 20230129083948-seed-products.js
 npx sequelize db:seed --seed 20230201093245-seed-product-images.js
 
+npx sequelize db:seed --seed 20230208150621-seed-users.js
+npx sequelize db:seed --seed 20230208151658-seed-user-addresses.js
 
 ubuntu commands:
 sudo service postgresql start
