@@ -20,6 +20,7 @@ npx sequelize db:migrate --name 20230206141924-create-user-address.js
 npx sequelize db:migrate --name 20230206145637-create-order.js
 
 #Phase 2
+npx sequelize db:migrate:undo --name 20230210113936-create-order-item.js
 npx sequelize db:migrate:undo --name 20230206145637-create-order.js
 npx sequelize db:migrate:undo --name 20230206141924-create-user-address.js
 npx sequelize db:migrate:undo --name 20230206141228-create-user.js

@@ -7,9 +7,9 @@ module.exports = {
 
     return queryInterface.bulkInsert(
       "orders",
-      orders.map(({ user_id, address_id, total, order_status }) => ({
+      orders.map(({ user_id, user_address_id, total, order_status }) => ({
         user_id,
-        address_id,
+        user_address_id,
         total,
         order_status,
         created_at: currentDate,

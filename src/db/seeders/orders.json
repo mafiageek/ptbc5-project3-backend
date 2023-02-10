@@ -1,13 +1,13 @@
 [
   {
     "user_id": 3,
-    "address_id": 1,
+    "user_address_id": 1,
     "total": 20.0,
     "order_status": "paid"
   },
   {
     "user_id": 4,
-    "address_id": 2,
+    "user_address_id": 2,
     "total": 20.0,
     "order_status": "paid"
   }

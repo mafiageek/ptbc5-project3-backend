@@ -11,14 +11,15 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       this.belongsTo(models.user);
       this.belongsTo(models.userAddress);
+      this.hasMany(models.orderItem);
     }
   }
   order.init(
     {
-      user_id: DataTypes.INTEGER,
-      address_id: DataTypes.INTEGER,
+      userId: DataTypes.INTEGER,
+      userAddressId: DataTypes.INTEGER,
       total: DataTypes.DECIMAL,
-      order_status: DataTypes.ENUM("paid", "shipped", "received", "reviewed"),
+      orderStatus: DataTypes.ENUM("paid", "shipped", "received", "reviewed"),
     },
     {
       sequelize,

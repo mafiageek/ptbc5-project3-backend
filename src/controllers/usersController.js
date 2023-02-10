@@ -1,4 +1,11 @@
-const { user, userAddress } = require("../db/models");
+const {
+  user,
+  userAddress,
+  order,
+  orderItem,
+  product,
+} = require("../db/models");
+
 const {
   getAllUsers,
   getUserById,
@@ -11,7 +18,7 @@ module.exports = {
     const { role } = query;
 
     const options = {
-      include: [{ model: userAddress }],
+      include: [{ model: userAddress }, { model: order }],
       where: {},
     };
 
