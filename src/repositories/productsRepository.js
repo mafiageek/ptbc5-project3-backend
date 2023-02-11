@@ -39,7 +39,7 @@ module.exports = {
       created_at: currentDate,
       updated_at: currentDate,
     });
-
+    const newProductJson = newProduct.toJSON();
     const newProductImage = await productImage.create({
       url_string: url_string,
       product_id: newProduct.id,
@@ -47,6 +47,8 @@ module.exports = {
       updated_at: currentDate,
     });
 
-    return newProduct;
+    const response = { ...newProductJson, productImages: [newProductImage] };
+
+    return response;
   },
 };
