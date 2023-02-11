@@ -11,6 +11,8 @@ npx sequelize model:generate --name user_address --attributes user_id:integer,ad
 
 npx sequelize model:generate --name order --attributes user_id:integer,address_id:integer,total:decimal,order_status:enum:'{paid,shipped,received,reviewed}' --underscored
 
+npx sequelize model:generate --name orderItem --attributes order_id:integer,product_id:integer,quantity:integer --underscored
+
 
 npx sequelize db:seed:undo 
 
@@ -23,7 +25,7 @@ npx sequelize seed:generate --name seed-categories
 npx sequelize seed:generate --name seed-users
 npx sequelize seed:generate --name seed-user-addresses
 npx sequelize seed:generate --name seed-orders
-npx sequelize seed:generate --name seed-users
+npx sequelize seed:generate --name seed-order-items
 
 
 npx sequelize db:seed --seed 20230201090927-seed-categories.js

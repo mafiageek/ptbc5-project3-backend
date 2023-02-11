@@ -1,4 +1,10 @@
-const { user } = require("../db/models");
+const {
+  user,
+  userAddress,
+  orderItem,
+  product,
+  order,
+} = require("../db/models");
 
 const logger = require("../middleware/logger");
 module.exports = {
@@ -8,12 +14,14 @@ module.exports = {
 
   getUserById(id) {
     const options = {
-      // attributes: {
-      //   include: [
-      //     [Sequelize.fn("COUNT", Sequelize.col("likes.id")), "likesCount"],
-      //   ],
-      // },
-      // group: ["like.id"],
+      include: [
+        { model: userAddress },
+        {
+          model: order,
+          include: { model: orderItem, include: { model: product } },
+        },
+      ],
+      where: {},
     };
     if (id) options.where = { id };
     return user.findOne(options);

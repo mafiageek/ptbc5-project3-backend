@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       this.hasMany(models.productImage);
       this.belongsTo(models.category);
+      this.hasMany(models.orderItem);
     }
   }
   product.init(
