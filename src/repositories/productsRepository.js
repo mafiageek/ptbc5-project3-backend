@@ -32,7 +32,7 @@ module.exports = {
   },
   async createProduct(payload) {
     const currentDate = new Date();
-    const { url_string, ...rest } = payload;
+    const { urlString, ...rest } = payload;
 
     const newProduct = await product.create({
       ...rest,
@@ -41,7 +41,7 @@ module.exports = {
     });
     const newProductJson = newProduct.toJSON();
     const newProductImage = await productImage.create({
-      url_string: url_string,
+      urlString: urlString,
       product_id: newProduct.id,
       created_at: currentDate,
       updated_at: currentDate,
