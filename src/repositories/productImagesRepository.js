@@ -11,20 +11,20 @@ module.exports = {
     });
   },
 
-  deleteProductImage(productImageId) {
+  deleteProductImage(id) {
     return productImage.destroy({
       where: {
-        id: productImageId,
+        id: id,
       },
     });
   },
 
-  updateProductImage(productImageId, payload) {
+  updateProductImage(id, payload) {
     return productImage.update(
       { ...payload, update_at: new Date() },
       {
         where: {
-          id: productImageId,
+          id: id,
         },
       }
     );

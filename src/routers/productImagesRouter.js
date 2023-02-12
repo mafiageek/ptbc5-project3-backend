@@ -9,15 +9,8 @@ productImagesRouter.post(
   productImagesController.createProductImage
 );
 
-// DELETE /productImages/:ProductImageId
-productImagesRouter.delete(
-  "/:productImageId",
-  productImagesController.deleteProductImage
-);
+productImagesRouter.delete("/:id", productImagesController.deleteProductImage);
 
-productImagesRouter.patch(
-  "/:productImageId",
-  productImagesController.updateProductImage
-);
+productImagesRouter.patch("/:id", productImagesController.updateProductImage);
 
 module.exports = productImagesRouter;
