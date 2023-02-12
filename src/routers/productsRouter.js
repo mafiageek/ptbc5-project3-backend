@@ -13,4 +13,6 @@ productsRouter.get(
 );
 productsRouter.patch("/:id", productsController.updateProductById);
 productsRouter.post("", productsController.createProduct);
+productsRouter.delete("/:id", productsController.deleteProduct);
+
 module.exports = productsRouter;

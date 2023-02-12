@@ -89,4 +89,11 @@ module.exports = {
 
     return response;
   },
+  deleteProduct(id) {
+    return product.destroy({
+      where: {
+        id: id,
+      },
+    });
+  },
 };

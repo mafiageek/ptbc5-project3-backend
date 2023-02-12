@@ -5,6 +5,7 @@ const {
   getProductById,
   getProductsByCategoryId,
   createProduct,
+  deleteProduct,
 } = require("../repositories/productsRepository");
 const { Sequelize, Op } = require("sequelize");
 const { SORT_ORDER_HASHMAP } = require("./constants");
@@ -92,5 +93,17 @@ module.exports = {
     const newProduct = await createProduct({ ...req.body });
 
     return res.json(newProduct);
+  },
+  async deleteProduct(req, res) {
+    const { id } = req.params;
+    const deleteResult = await deleteProduct(id);
+
+    if (!deleteResult) {
+      const error = new Error(`Could not delete product with product ID ${id}`);
+      error.status = 400;
+      throw error;
+    }
+
+    res.json({ success: true });
   },
 };

@@ -65,6 +65,6 @@ module.exports = {
       error.status = 400;
       throw error;
     }
-    return res.json(deleteResult);
+    res.json({ success: true });
   },
 };

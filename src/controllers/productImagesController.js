@@ -15,13 +15,11 @@ module.exports = {
   },
 
   async deleteProductImage(req, res) {
-    const { productImageId } = req.params;
-    const deleteResult = await deleteProductImage(productImageId);
+    const { id } = req.params;
+    const deleteResult = await deleteProductImage(id);
 
     if (!deleteResult) {
-      const error = new Error(
-        `Could not delete product Image with product image ID ${productImageId}`
-      );
+      const error = new Error(`Could not delete product Image with ID ${id}`);
       error.status = 400;
       throw error;
     }
@@ -30,23 +28,17 @@ module.exports = {
   },
 
   async updateProductImage(req, res) {
-    const { productImageId } = req.params;
+    const { id } = req.params;
     // +id converts a string to number
-    if (
-      isNaN(productImageId) ||
-      +productImageId > Number.MAX_SAFE_INTEGER ||
-      +productImageId < 0
-    ) {
+    if (isNaN(id) || +id > Number.MAX_SAFE_INTEGER || +id < 0) {
       const error = new Error("id  must be a valid number");
       error.status = 400;
       throw error;
     }
-    const updateResult = await updateProductImage(productImageId, req.body);
+    const updateResult = await updateProductImage(id, req.body);
 
     if (!updateResult) {
-      const error = new Error(
-        `Could not update product image with product image ID ${productImageId}`
-      );
+      const error = new Error(`Could not update product image with ID ${id}`);
       error.status = 400;
       throw error;
     }
