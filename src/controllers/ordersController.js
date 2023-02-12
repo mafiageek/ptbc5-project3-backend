@@ -2,6 +2,7 @@ const { user, userAddress, product, orderItem } = require("../db/models");
 const {
   getAllOrders,
   getOrderById,
+  updateOrderById,
 } = require("../repositories/ordersRepository");
 
 module.exports = {
@@ -36,5 +37,15 @@ module.exports = {
     }
 
     return res.json(order);
+  },
+  async updateOrderById(req, res) {
+    const { id } = req.params;
+    if (isNaN(id) || +id > Number.MAX_SAFE_INTEGER || +id < 0) {
+      const error = new Error("id  must be a valid number");
+      error.status = 400;
+      throw error;
+    }
+    const updatedOrder = await updateOrderById(id, req.body);
+    return res.json(updatedOrder);
   },
 };

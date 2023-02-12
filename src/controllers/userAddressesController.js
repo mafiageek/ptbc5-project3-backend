@@ -45,6 +45,11 @@ module.exports = {
   },
   async updateAddressById(req, res) {
     const { id } = req.params;
+    if (isNaN(id) || +id > Number.MAX_SAFE_INTEGER || +id < 0) {
+      const error = new Error("id  must be a valid number");
+      error.status = 400;
+      throw error;
+    }
     const updatedAddress = await updateAddressById(id, req.body);
     return res.json(updatedAddress);
   },

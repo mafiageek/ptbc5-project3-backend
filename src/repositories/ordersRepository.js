@@ -23,4 +23,14 @@ module.exports = {
     if (id) options.where = { id };
     return order.findOne(options);
   },
+  async updateOrderById(id, payload) {
+    // eslint-disable-next-line no-unused-vars
+    const [_, [updatedOrder]] = await order.update(
+      { ...payload, updated_at: new Date() },
+      // the model is returned when returning:true is specified
+      { where: { id }, returning: true }
+    );
+
+    return updatedOrder;
+  },
 };

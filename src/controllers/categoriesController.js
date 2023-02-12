@@ -1,8 +1,9 @@
 const {
   getAllCategories,
-  getCategoryByCategoryId,
-  updateCategoryByCategoryId,
+  getCategoryById,
+  updateCategoryById,
   createCategory,
+  deleteCategory,
 } = require("../repositories/categoriesRepository");
 const { Sequelize, Op } = require("sequelize");
 const { SORT_ORDER_HASHMAP } = require("./constants");
@@ -14,42 +15,56 @@ module.exports = {
 
     return res.json(categories);
   },
-  async getCategoryByCategoryId(req, res) {
-    const { categoryId } = req.params;
+  async getCategoryById(req, res) {
+    const { id } = req.params;
 
     // +id converts a string to number
-    if (
-      isNaN(categoryId) ||
-      +categoryId > Number.MAX_SAFE_INTEGER ||
-      +categoryId < 0
-    ) {
+    if (isNaN(id) || +id > Number.MAX_SAFE_INTEGER || +id < 0) {
       const error = new Error("Category Id must be a valid number");
       error.status = 400;
       throw error;
     }
 
-    const category = await getCategoryByCategoryId(categoryId);
+    const category = await getCategoryById(id);
     if (!category) {
-      const error = new Error(
-        `Could not find category with category id ${categoryId}`
-      );
+      const error = new Error(`Could not find category with category id ${id}`);
       error.status = 400;
       throw error;
     }
 
     return res.json(category);
   },
-  async updateCategoryByCategoryId(req, res) {
-    const { categoryId } = req.params;
-    const updatedCategory = await updateCategoryByCategoryId(
-      categoryId,
-      req.body
-    );
+  async updateCategoryById(req, res) {
+    const { id } = req.params;
+    // +id converts a string to number
+    if (isNaN(id) || +id > Number.MAX_SAFE_INTEGER || +id < 0) {
+      const error = new Error("Category Id must be a valid number");
+      error.status = 400;
+      throw error;
+    }
+    const updatedCategory = await updateCategoryById(id, req.body);
     return res.json(updatedCategory);
   },
   async createCategory(req, res) {
     const newCategory = await createCategory({ ...req.body });
 
     return res.json(newCategory);
+  },
+  async deleteCategory(req, res) {
+    const { id } = req.params;
+    // +id converts a string to number
+    if (isNaN(id) || +id > Number.MAX_SAFE_INTEGER || +id < 0) {
+      const error = new Error("Category Id must be a valid number");
+      error.status = 400;
+      throw error;
+    }
+    const deleteResult = await deleteCategory(id);
+
+    if (!deleteResult) {
+      const error = new Error(`Could not delete category with id ${id}`);
+      error.status = 400;
+      throw error;
+    }
+    return res.json(deleteResult);
   },
 };
