@@ -15,7 +15,7 @@ const {
 
 module.exports = {
   async getAllUsers({ query }, res) {
-    const { role } = query;
+    const { role, email, uid } = query;
 
     const options = {
       include: [{ model: userAddress }, { model: order }],
@@ -24,6 +24,14 @@ module.exports = {
 
     if ((role && role == "user") || role == "admin") {
       options.where.role = role;
+    }
+
+    if (email) {
+      options.where.email = email;
+    }
+
+    if (uid) {
+      options.where.uid = uid;
     }
     const users = await getAllUsers(options);
 
