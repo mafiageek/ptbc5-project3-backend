@@ -6,17 +6,17 @@ module.exports = {
     return category.findAll();
   },
 
-  getCategoryByCategoryId(categoryId) {
+  getCategoryById(id) {
     const options = {};
-    if (categoryId) options.where = { id: categoryId };
+    if (id) options.where = { id: id };
     return category.findOne(options);
   },
-  async updateCategoryByCategoryId(categoryId, payload) {
+  async updateCategoryById(id, payload) {
     // eslint-disable-next-line no-unused-vars
     const [_, [updatedCategory]] = await category.update(
       { ...payload, updated_at: new Date() },
       // the model is returned when returning:true is specified
-      { where: { id: categoryId }, returning: true }
+      { where: { id: id }, returning: true }
     );
 
     return updatedCategory;
@@ -31,5 +31,10 @@ module.exports = {
     });
 
     return newCategory;
+  },
+  deleteCategory(id) {
+    return category.destroy({
+      where: { id: id },
+    });
   },
 };

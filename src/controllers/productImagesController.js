@@ -31,6 +31,16 @@ module.exports = {
 
   async updateProductImage(req, res) {
     const { productImageId } = req.params;
+    // +id converts a string to number
+    if (
+      isNaN(productImageId) ||
+      +productImageId > Number.MAX_SAFE_INTEGER ||
+      +productImageId < 0
+    ) {
+      const error = new Error("id  must be a valid number");
+      error.status = 400;
+      throw error;
+    }
     const updateResult = await updateProductImage(productImageId, req.body);
 
     if (!updateResult) {
