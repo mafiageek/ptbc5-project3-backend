@@ -16,6 +16,14 @@ module.exports = {
       where: {},
     };
 
+    if ((userId && uid) || (userId && email) || (uid && email)) {
+      const error = new Error(
+        "Please input either userId, email or uid. Do not stack these query parameters"
+      );
+      error.status = 400;
+      throw error;
+    }
+
     if (userId) {
       options.where.userId = userId;
     }
