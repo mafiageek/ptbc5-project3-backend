@@ -2,6 +2,7 @@ const { order, product } = require("../db/models");
 const {
   getAllOrderItems,
   getOrderItemById,
+  createOrderItem,
 } = require("../repositories/orderItemsRepository");
 
 module.exports = {
@@ -32,5 +33,10 @@ module.exports = {
     }
 
     return res.json(orderItem);
+  },
+  async createOrderItem(req, res) {
+    const newOrderItem = await createOrderItem({ ...req.body });
+
+    return res.json(newOrderItem);
   },
 };

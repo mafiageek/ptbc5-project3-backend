@@ -13,4 +13,15 @@ module.exports = {
     if (id) options.where = { id };
     return orderItem.findOne(options);
   },
+  async createOrderItem(payload) {
+    const currentDate = new Date();
+
+    const newOrderItem = await orderItem.create({
+      ...payload,
+      created_at: currentDate,
+      updated_at: currentDate,
+    });
+
+    return newOrderItem;
+  },
 };
