@@ -3,6 +3,7 @@ const {
   getAllOrders,
   getOrderById,
   updateOrderById,
+  createOrder,
 } = require("../repositories/ordersRepository");
 
 module.exports = {
@@ -47,5 +48,10 @@ module.exports = {
     }
     const updatedOrder = await updateOrderById(id, req.body);
     return res.json(updatedOrder);
+  },
+  async createOrder(req, res) {
+    const newOrder = await createOrder({ ...req.body });
+
+    return res.json(newOrder);
   },
 };

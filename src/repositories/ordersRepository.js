@@ -33,4 +33,15 @@ module.exports = {
 
     return updatedOrder;
   },
+  async createOrder(payload) {
+    const currentDate = new Date();
+
+    const newOrder = await order.create({
+      ...payload,
+      created_at: currentDate,
+      updated_at: currentDate,
+    });
+
+    return newOrder;
+  },
 };
