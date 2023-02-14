@@ -80,7 +80,7 @@ module.exports = {
     const newProductJson = newProduct.toJSON();
     const newProductImage = await productImage.create({
       urlString: urlString,
-      product_id: newProduct.id,
+      productId: newProductJson.id,
       created_at: currentDate,
       updated_at: currentDate,
     });
