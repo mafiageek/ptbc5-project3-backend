@@ -19,6 +19,13 @@ module.exports = {
     });
   },
 
+  deleteProductImageByProductId(productId) {
+    return productImage.destroy({
+      where: {
+        productId: productId,
+      },
+    });
+  },
   updateProductImage(id, payload) {
     return productImage.update(
       { ...payload, update_at: new Date() },

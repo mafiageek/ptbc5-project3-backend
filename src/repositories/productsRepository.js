@@ -2,6 +2,7 @@ const { validURL } = require("../controllers/constants");
 const { product, productImage, category } = require("../db/models");
 
 const logger = require("../middleware/logger");
+const { deleteProductImageByProductId } = require("./productImagesRepository");
 
 module.exports = {
   getAllProducts(options) {
@@ -89,7 +90,9 @@ module.exports = {
 
     return response;
   },
-  deleteProduct(id) {
+  async deleteProduct(id) {
+    await deleteProductImageByProductId(id);
+
     return product.destroy({
       where: {
         id: id,
