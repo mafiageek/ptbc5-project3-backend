@@ -5,8 +5,7 @@ const {
   createCategory,
   deleteCategory,
 } = require("../repositories/categoriesRepository");
-const { Sequelize, Op } = require("sequelize");
-const { SORT_ORDER_HASHMAP } = require("./constants");
+
 module.exports = {
   async getAllCategories(req, res) {
     //if (name) options.where.name = { [Op.substring]: name };

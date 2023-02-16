@@ -23,6 +23,18 @@ module.exports = {
     if (id) options.where = { id };
     return order.findOne(options);
   },
+
+  getOrdersByUserId(userId) {
+    const options = {
+      include: [
+        { model: orderItem, include: { model: product } },
+        { model: userAddress },
+      ],
+      where: {},
+    };
+    if (userId) options.where = { user_id: userId };
+    return order.findAll(options);
+  },
   async updateOrderById(id, payload) {
     // eslint-disable-next-line no-unused-vars
     const [_, [updatedOrder]] = await order.update(

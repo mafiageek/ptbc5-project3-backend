@@ -1,10 +1,4 @@
-const {
-  user,
-  userAddress,
-  order,
-  orderItem,
-  product,
-} = require("../db/models");
+const { userAddress, order } = require("../db/models");
 
 const {
   getAllUsers,

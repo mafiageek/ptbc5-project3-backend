@@ -8,7 +8,6 @@ const {
   deleteProduct,
 } = require("../repositories/productsRepository");
 const { Sequelize, Op } = require("sequelize");
-const { SORT_ORDER_HASHMAP } = require("./constants");
 module.exports = {
   async getAllProducts({ query }, res) {
     const { name, categoryName } = query;
