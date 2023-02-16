@@ -3,8 +3,6 @@ const {
   deleteProductImage,
   updateProductImage,
 } = require("../repositories/productImagesRepository");
-const { Sequelize, Op } = require("sequelize");
-const { SORT_ORDER_HASHMAP } = require("./constants");
 module.exports = {
   async createProductImage(req, res) {
     const newProductImage = await createProductImage({

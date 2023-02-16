@@ -2,6 +2,7 @@ const { user, userAddress, product, orderItem } = require("../db/models");
 const {
   getAllOrders,
   getOrderById,
+  getOrdersByUserId,
   updateOrderById,
   createOrder,
 } = require("../repositories/ordersRepository");
@@ -38,6 +39,25 @@ module.exports = {
     }
 
     return res.json(order);
+  },
+  async getOrdersByUserId(req, res) {
+    const { userId } = req.params;
+    // +userId converts a string to number
+    if (isNaN(userId) || +userId > Number.MAX_SAFE_INTEGER || +userId < 0) {
+      const error = new Error("User id  must be a valid number");
+      error.status = 400;
+      throw error;
+    }
+
+    const orders = await getOrdersByUserId(userId);
+
+    if (!orders) {
+      const error = new Error(`Could not find order with user id ${userId}`);
+      error.status = 400;
+      throw error;
+    }
+
+    return res.json(orders);
   },
   async updateOrderById(req, res) {
     const { id } = req.params;
