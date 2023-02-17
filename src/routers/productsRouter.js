@@ -1,10 +1,10 @@
 const express = require("express");
 
 const productsController = require("../controllers/productsController");
-
+const authMiddleware = require("../middleware/auth");
 const productsRouter = express.Router();
 
-productsRouter.get("/", productsController.getAllProducts);
+productsRouter.get("/", authMiddleware, productsController.getAllProducts);
 productsRouter.get("/:id", productsController.getOneProductById);
 
 productsRouter.get(
