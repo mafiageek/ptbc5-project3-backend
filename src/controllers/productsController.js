@@ -8,9 +8,10 @@ const {
   deleteProduct,
 } = require("../repositories/productsRepository");
 const { Sequelize, Op } = require("sequelize");
+const { checkAdmin } = require("./constants");
 module.exports = {
-  async getAllProducts({ query }, res) {
-    const { name, categoryName } = query;
+  async getAllProducts(req, res) {
+    const { name, categoryName } = req.query;
 
     const options = {
       include: [{ model: productImage }, { model: category }],
@@ -77,6 +78,11 @@ module.exports = {
     return res.json(products);
   },
   async updateProductById(req, res) {
+    if (!checkAdmin(req.email)) {
+      const error = new Error("Please log in as admin.");
+      error.status = 400;
+      throw error;
+    }
     const { id } = req.params;
     if (isNaN(id) || +id > Number.MAX_SAFE_INTEGER || +id < 0) {
       const error = new Error("id  must be a valid number");
@@ -89,11 +95,21 @@ module.exports = {
   },
 
   async createProduct(req, res) {
+    if (!checkAdmin(req.email)) {
+      const error = new Error("Please log in as admin.");
+      error.status = 400;
+      throw error;
+    }
     const newProduct = await createProduct({ ...req.body });
 
     return res.json(newProduct);
   },
   async deleteProduct(req, res) {
+    if (!checkAdmin(req.email)) {
+      const error = new Error("Please log in as admin.");
+      error.status = 400;
+      throw error;
+    }
     const { id } = req.params;
     const deleteResult = await deleteProduct(id);
 
