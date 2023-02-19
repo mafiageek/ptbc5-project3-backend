@@ -4,6 +4,8 @@ const ordersController = require("../controllers/ordersController");
 
 const ordersRouter = express.Router();
 
+ordersRouter.get("/token", ordersController.getToken);
+ordersRouter.post("/payment", ordersController.processPayment);
 ordersRouter.get("/", ordersController.getAllOrders);
 ordersRouter.get("/:id", ordersController.getOrderById);
 ordersRouter.get("/user/:userId", ordersController.getOrdersByUserId);
