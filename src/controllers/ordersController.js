@@ -1,4 +1,5 @@
 const { user, userAddress, product, orderItem } = require("../db/models");
+const braintree = require("braintree");
 const {
   getAllOrders,
   getOrderById,
@@ -6,6 +7,13 @@ const {
   updateOrderById,
   createOrder,
 } = require("../repositories/ordersRepository");
+
+const gateway = new braintree.BraintreeGateway({
+  environment: braintree.Environment.Sandbox,
+  merchantId: process.env.BRAINTREE_MERCHANT_ID,
+  publicKey: process.env.BRAINTREE_PUBLIC_KEY,
+  privateKey: process.env.BRAINTREE_PRIVATE_KEY,
+});
 
 module.exports = {
   async getAllOrders(req, res) {
@@ -73,5 +81,43 @@ module.exports = {
     const newOrder = await createOrder({ ...req.body });
 
     return res.json(newOrder);
+  },
+
+  async getToken(req, res) {
+    try {
+      gateway.clientToken.generate({}, function (err, response) {
+        if (err) {
+          res.status(500).send(err);
+        } else {
+          res.send(response);
+        }
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  },
+
+  async processPayment(req, res) {
+    try {
+      // console.log(req.body);
+      const { nonce, cart } = req.body;
+
+      let total = 0;
+      cart.map((i) => {
+        total += i.price;
+      });
+      // console.log("total => ", total);
+
+      let newTransaction = gateway.transaction.sale({
+        amount: total,
+        paymentMethodNonce: nonce,
+        options: {
+          submitForSettlement: true,
+        },
+      });
+      res.json({ ok: true });
+    } catch (err) {
+      console.log(err);
+    }
   },
 };
