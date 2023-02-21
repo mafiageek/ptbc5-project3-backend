@@ -34,6 +34,11 @@ module.exports = {
     return res.json(category);
   },
   async updateCategoryById(req, res) {
+    if (!checkAdmin(req.email)) {
+      const error = new Error("Please log in as admin.");
+      error.status = 400;
+      throw error;
+    }
     const { id } = req.params;
     // +id converts a string to number
     if (isNaN(id) || +id > Number.MAX_SAFE_INTEGER || +id < 0) {
@@ -45,11 +50,21 @@ module.exports = {
     return res.json(updatedCategory);
   },
   async createCategory(req, res) {
+    if (!checkAdmin(req.email)) {
+      const error = new Error("Please log in as admin.");
+      error.status = 400;
+      throw error;
+    }
     const newCategory = await createCategory({ ...req.body });
 
     return res.json(newCategory);
   },
   async deleteCategory(req, res) {
+    if (!checkAdmin(req.email)) {
+      const error = new Error("Please log in as admin.");
+      error.status = 400;
+      throw error;
+    }
     const { id } = req.params;
     // +id converts a string to number
     if (isNaN(id) || +id > Number.MAX_SAFE_INTEGER || +id < 0) {

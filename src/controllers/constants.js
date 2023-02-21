@@ -1,3 +1,5 @@
+const { user } = require("../db/models");
+
 module.exports = {
   SORT_ORDER_HASHMAP: {
     ascend: "ASC",
@@ -15,5 +17,14 @@ module.exports = {
       "i"
     ); // fragment locator
     return !!pattern.test(str);
+  },
+
+  async checkAdmin(email) {
+    const options = {
+      where: {},
+    };
+    if (email) options.where = { email };
+    const returnedUser = await user.findOne(options);
+    return returnedUser.toJSON().role == "admin";
   },
 };

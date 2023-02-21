@@ -14,6 +14,7 @@ module.exports = {
     return orderItem.findOne(options);
   },
   async createOrderItem(payload) {
+    // TODO: reduce quantity in products
     const currentDate = new Date();
 
     const newOrderItem = await orderItem.create({
